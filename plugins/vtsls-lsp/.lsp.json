@@ -1,7 +1,9 @@
 {
     "typescript": {
-        "command": "vtsls",
+        "command": "cmd",
         "args": [
+            "/c",
+            "vtsls",
             "--stdio"
         ],
         "extensionToLanguage": {

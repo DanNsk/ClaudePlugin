@@ -1,7 +1,9 @@
 {
     "python": {
-        "command": "pyright-langserver",
+        "command": "cmd",
         "args": [
+            "/c",
+            "pyright-langserver",
             "--stdio"
         ],
         "extensionToLanguage": {

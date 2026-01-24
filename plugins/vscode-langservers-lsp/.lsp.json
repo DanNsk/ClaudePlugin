@@ -1,7 +1,9 @@
 {
     "html": {
-        "command": "vscode-html-language-server",
+        "command": "cmd",
         "args": [
+            "/c",
+            "vscode-html-language-server",
             "--stdio"
         ],
         "languages": [
@@ -17,8 +19,10 @@
         "maxRestarts": 3
     },
     "css": {
-        "command": "vscode-css-language-server",
+        "command": "cmd",
         "args": [
+            "/c",
+            "vscode-css-language-server",
             "--stdio"
         ],
         "languages": [
@@ -39,8 +43,10 @@
         "maxRestarts": 3
     },
     "json": {
-        "command": "vscode-json-language-server",
+        "command": "cmd",
         "args": [
+            "/c",
+            "vscode-json-language-server",
             "--stdio"
         ],
         "languages": [
