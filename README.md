@@ -81,7 +81,7 @@ ClaudePlugin/
 │   └── marketplace.json
 ├── plugins/
 │   ├── notifications/
-│   │   ├── plugin.json
+│   │   ├── .claude-plugin/plugin.json
 │   │   ├── hooks/hooks.json
 │   │   └── scripts/notify.ps1
 │   ├── clangd-lsp/
