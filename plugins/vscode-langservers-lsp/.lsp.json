@@ -1,0 +1,59 @@
+{
+    "html": {
+        "command": "vscode-html-language-server",
+        "args": [
+            "--stdio"
+        ],
+        "languages": [
+            "html"
+        ],
+        "fileExtensions": [
+            ".html",
+            ".htm"
+        ],
+        "transport": "stdio",
+        "initializationOptions": {},
+        "settings": {},
+        "maxRestarts": 3
+    },
+    "css": {
+        "command": "vscode-css-language-server",
+        "args": [
+            "--stdio"
+        ],
+        "languages": [
+            "css",
+            "scss",
+            "sass",
+            "less"
+        ],
+        "fileExtensions": [
+            ".css",
+            ".scss",
+            ".sass",
+            ".less"
+        ],
+        "transport": "stdio",
+        "initializationOptions": {},
+        "settings": {},
+        "maxRestarts": 3
+    },
+    "json": {
+        "command": "vscode-json-language-server",
+        "args": [
+            "--stdio"
+        ],
+        "languages": [
+            "json",
+            "jsonc"
+        ],
+        "fileExtensions": [
+            ".json",
+            ".jsonc"
+        ],
+        "transport": "stdio",
+        "initializationOptions": {},
+        "settings": {},
+        "maxRestarts": 3
+    }
+}

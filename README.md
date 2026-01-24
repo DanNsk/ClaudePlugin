@@ -81,7 +81,12 @@ ClaudePlugin/
 │   └── marketplace.json
 ├── plugins/
 │   ├── notifications/
+│   │   ├── plugin.json
+│   │   ├── hooks/hooks.json
+│   │   └── scripts/notify.ps1
 │   ├── clangd-lsp/
+│   │   ├── plugin.json
+│   │   └── .lsp.json
 │   ├── gopls-lsp/
 │   ├── omnisharp-lsp/
 │   ├── powershell-lsp/
@@ -89,8 +94,8 @@ ClaudePlugin/
 │   ├── vscode-langservers-lsp/
 │   └── vtsls-lsp/
 ├── skills/
-│   ├── lsp-usage/
-│   └── nuget-version-check/
+│   ├── lsp-usage/SKILL.md
+│   └── nuget-version-check/SKILL.md
 └── README.md
 ```
 
