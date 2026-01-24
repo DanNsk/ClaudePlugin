@@ -14,7 +14,7 @@ Add this marketplace to Claude Code:
 
 ### Notifications
 
-Windows toast notifications for Claude Code events.
+Pushover notifications for Claude Code events (only triggers when workstation is locked).
 
 **Install:**
 ```
@@ -27,11 +27,10 @@ Windows toast notifications for Claude Code events.
 - Task completion - "Task Complete" notification
 
 **Prerequisites:**
-- Windows 10/11
-- Optional: BurntToast PowerShell module for enhanced notifications
-  ```powershell
-  Install-Module -Name BurntToast -Scope CurrentUser
-  ```
+- [Pushover](https://pushover.net/) account and API token
+- Environment variables:
+  - `PUSHOVER_USER` - Your Pushover user key
+  - `PUSHOVER_TOKEN` - Your Pushover application token
 
 ### LSP Plugins
 
@@ -99,7 +98,4 @@ ClaudePlugin/
 
 Node.js-based LSP servers (pyright, vscode-langservers, vtsls) use `cmd /c` prefix for proper Windows execution.
 
-PowerShell notification script uses:
-1. BurntToast module (if available)
-2. Windows.UI.Notifications API (fallback)
-3. Console beep + message (final fallback)
+Notifications only trigger when the workstation is locked (detects LogonUI process). This prevents interruptions while actively working.

@@ -1,89 +1,42 @@
+#Requires -Version 5.1
 param(
-    [string]$Title = "Claude Code",
-    [string]$Message = "Notification",
+    [string]$Message = "Claude stopped execution",
+    [string]$Title = "Claude Alert",
     [ValidateSet("Info", "Warning", "Success", "Error")]
     [string]$Type = "Info"
 )
 
-function Show-BurntToastNotification {
-    param($Title, $Message, $Type)
+# Check if workstation is locked
+$locked = (Get-Process -Name LogonUI -ErrorAction SilentlyContinue) -ne $null
 
-    $sound = switch ($Type) {
-        "Warning" { "Alarm" }
-        "Error"   { "Alarm2" }
-        "Success" { "Mail" }
-        default   { "Default" }
-    }
+if (-not $locked) { exit 0 }
 
-    New-BurntToastNotification -Text $Title, $Message -Sound $sound
-    return $true
+# Get credentials from environment
+$user = $env:PUSHOVER_USER
+$token = $env:PUSHOVER_TOKEN
+
+# Exit if credentials missing
+if (-not $user -or -not $token) { exit 0 }
+
+# Map type to priority (-1 = low, 0 = normal, 1 = high)
+$priority = switch ($Type) {
+    "Warning" { 1 }
+    "Error"   { 1 }
+    "Success" { 0 }
+    default   { 0 }
 }
 
-function Show-WindowsToastNotification {
-    param($Title, $Message, $Type)
-
-    try {
-        [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null
-        [Windows.Data.Xml.Dom.XmlDocument, Windows.Data.Xml.Dom.XmlDocument, ContentType = WindowsRuntime] | Out-Null
-
-        $template = @"
-<toast>
-    <visual>
-        <binding template="ToastText02">
-            <text id="1">$Title</text>
-            <text id="2">$Message</text>
-        </binding>
-    </visual>
-    <audio src="ms-winsoundevent:Notification.Default"/>
-</toast>
-"@
-
-        $xml = New-Object Windows.Data.Xml.Dom.XmlDocument
-        $xml.LoadXml($template)
-
-        $toast = New-Object Windows.UI.Notifications.ToastNotification $xml
-        $notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier("Claude Code")
-        $notifier.Show($toast)
-        return $true
+# Send Pushover notification
+try {
+    $body = @{
+        token    = $token
+        user     = $user
+        message  = $Message
+        title    = $Title
+        priority = $priority
     }
-    catch {
-        return $false
-    }
+    Invoke-RestMethod -Uri "https://api.pushover.net/1/messages.json" -Method Post -Body $body -ErrorAction Stop | Out-Null
 }
-
-function Show-FallbackNotification {
-    param($Title, $Message, $Type)
-
-    # Console beep pattern based on type
-    $beepCount = switch ($Type) {
-        "Warning" { 2 }
-        "Error"   { 3 }
-        "Success" { 1 }
-        default   { 1 }
-    }
-
-    for ($i = 0; $i -lt $beepCount; $i++) {
-        [Console]::Beep(800, 200)
-        if ($i -lt ($beepCount - 1)) {
-            Start-Sleep -Milliseconds 100
-        }
-    }
-
-    Write-Host "[$Type] $Title : $Message"
+catch {
+    # Silently ignore errors
 }
-
-# Try BurntToast first (best experience)
-if (Get-Module -ListAvailable -Name BurntToast) {
-    Import-Module BurntToast -ErrorAction SilentlyContinue
-    if (Show-BurntToastNotification -Title $Title -Message $Message -Type $Type) {
-        exit 0
-    }
-}
-
-# Try Windows.UI.Notifications API
-if (Show-WindowsToastNotification -Title $Title -Message $Message -Type $Type) {
-    exit 0
-}
-
-# Fallback to console beep + message
-Show-FallbackNotification -Title $Title -Message $Message -Type $Type

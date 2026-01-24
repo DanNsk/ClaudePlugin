@@ -5,11 +5,11 @@
   "plugins": [
     {
       "id": "notifications",
-      "name": "Windows Notifications",
-      "description": "Toast notifications for Claude events (permission prompts, input dialogs, task completion)",
+      "name": "Pushover Notifications",
+      "description": "Pushover notifications for Claude events when workstation is locked (permission prompts, input dialogs, task completion)",
       "path": "plugins/notifications",
       "platforms": ["win32"],
-      "prerequisites": ["BurntToast PowerShell module (optional, for enhanced notifications)"]
+      "prerequisites": ["Pushover account", "PUSHOVER_USER and PUSHOVER_TOKEN environment variables"]
     },
     {
       "id": "clangd-lsp",

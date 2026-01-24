@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Title \"Claude Code\" -Message \"Permission Required\" -Type \"Warning\""
+            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Message \"Permission Required\" -Title \"Claude Alert\" -Type \"Warning\""
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Title \"Claude Code\" -Message \"Input Required\" -Type \"Info\""
+            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Message \"Input Required\" -Title \"Claude Alert\" -Type \"Info\""
           }
         ]
       }
@@ -25,7 +25,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Title \"Claude Code\" -Message \"Task Complete\" -Type \"Success\""
+            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Message \"Task Complete\" -Title \"Claude Alert\" -Type \"Success\""
           }
         ]
       }
