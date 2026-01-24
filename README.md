@@ -27,6 +27,8 @@ Pushover notifications for Claude Code events (only triggers when workstation is
 - Task completion - "Task Complete" notification
 
 **Prerequisites:**
+- Bash (Git Bash or WSL)
+- curl, jq (optional, falls back to grep)
 - [Pushover](https://pushover.net/) account and API token
 - Environment variables:
   - `PUSHOVER_USER` - Your Pushover user key
@@ -83,7 +85,7 @@ ClaudePlugin/
 │   ├── notifications/
 │   │   ├── .claude-plugin/plugin.json
 │   │   ├── hooks/hooks.json
-│   │   └── scripts/notify.ps1
+│   │   └── scripts/notify.sh
 │   ├── clangd-lsp/
 │   │   ├── plugin.json
 │   │   └── .lsp.json
