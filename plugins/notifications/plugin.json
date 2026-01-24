@@ -1,7 +1,0 @@
-{
-  "name": "Pushover Notifications",
-  "version": "1.0.0",
-  "description": "Pushover notifications for Claude Code events when workstation is locked",
-  "platforms": ["win32"],
-  "hooks": "hooks/hooks.json"
-}

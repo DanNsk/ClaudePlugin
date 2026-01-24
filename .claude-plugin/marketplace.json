@@ -99,6 +99,15 @@
         "name": "Piebald LLC",
         "email": "support@piebald.ai"
       }
+    },
+    {
+      "name": "utility-skills",
+      "description": "Collection of utility skills for LSP usage guidance and NuGet version checking",
+      "source": "./",
+      "skills": [
+        "./skills/lsp-usage",
+        "./skills/nuget-version-check"
+      ]
     }
   ]
 }

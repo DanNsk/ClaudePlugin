@@ -1,0 +1,8 @@
+{
+  "name": "notifications",
+  "description": "Pushover notifications for Claude Code events when workstation is locked",
+  "author": {
+    "name": "dabystrukhin",
+    "email": "dabystrukhin@example.com"
+  }
+}

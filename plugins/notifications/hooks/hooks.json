@@ -1,4 +1,5 @@
 {
+  "description": "Pushover notifications for permission prompts, input dialogs, and task completion",
   "hooks": {
     "Notification": [
       {
