@@ -1,7 +1,7 @@
 {
-  "name": "pyright-lsp",
+  "name": "pyrightex-lsp",
   "version": "0.1.0",
-  "description": "Python language server with excellent type checking",
+  "description": "Python language server with excellent type checking (Windows cmd /c wrapper)",
   "author": {
     "name": "Piebald LLC",
     "email": "support@piebald.ai"

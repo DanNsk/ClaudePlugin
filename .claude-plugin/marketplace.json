@@ -65,10 +65,10 @@
       }
     },
     {
-      "name": "pyright-lsp",
+      "name": "pyrightex-lsp",
       "version": "0.1.0",
-      "source": "./plugins/pyright-lsp",
-      "description": "Python language server with excellent type checking",
+      "source": "./plugins/pyrightex-lsp",
+      "description": "Python language server with excellent type checking (Windows cmd /c wrapper)",
       "category": "development",
       "tags": ["python", "lsp", "language-server", "type-checking"],
       "author": {
