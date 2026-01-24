@@ -7,7 +7,7 @@ A collection of plugins and skills for Claude Code on Windows.
 Add this marketplace to Claude Code:
 
 ```
-/plugin marketplace add C:\Development\ClaudePlugin
+/plugin marketplace add https://github.com/DanNsk/ClaudePlugin.git
 ```
 
 ## Plugins
