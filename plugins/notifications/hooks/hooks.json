@@ -7,7 +7,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Message \"Permission Required\" -Title \"Claude Alert\" -Type \"Warning\""
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -AltMessage \"Permission Required\" -AltTitle \"Claude - Permission Required\"",
+            "timeout": 10
           }
         ]
       },
@@ -16,7 +17,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Message \"Input Required\" -Title \"Claude Alert\" -Type \"Info\""
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -AltMessage \"Input Required\" -AltTitle \"Claude - Input Required\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -AltMessage \"Waiting for Input\" -AltTitle \"Claude - Waiting\"",
+            "timeout": 10
           }
         ]
       }
@@ -26,7 +38,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Message \"Task Complete\" -Title \"Claude Alert\" -Type \"Success\""
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -AltMessage \"Task Complete\" -AltTitle \"Claude Code\"",
+            "timeout": 10
           }
         ]
       }
