@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -AltMessage \"Permission Required\" -AltTitle \"Claude - Permission Required\"",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.sh\" \"Permission Required\" \"Claude - Permission Required\"",
             "timeout": 10
           }
         ]
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -AltMessage \"Input Required\" -AltTitle \"Claude - Input Required\"",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.sh\" \"Input Required\" \"Claude - Input Required\"",
             "timeout": 10
           }
         ]
@@ -27,7 +27,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -AltMessage \"Waiting for Input\" -AltTitle \"Claude - Waiting\"",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.sh\" \"Waiting for Input\" \"Claude - Waiting\"",
             "timeout": 10
           }
         ]
@@ -38,7 +38,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -AltMessage \"Task Complete\" -AltTitle \"Claude Code\"",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.sh\" \"Task Complete\" \"Claude Code\"",
             "timeout": 10
           }
         ]
