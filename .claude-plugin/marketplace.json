@@ -1,0 +1,92 @@
+{
+  "name": "Claude Plugin Marketplace",
+  "version": "1.0.0",
+  "description": "Collection of plugins and skills for Claude Code on Windows",
+  "plugins": [
+    {
+      "id": "notifications",
+      "name": "Windows Notifications",
+      "description": "Toast notifications for Claude events (permission prompts, input dialogs, task completion)",
+      "path": "plugins/notifications",
+      "platforms": ["win32"],
+      "prerequisites": ["BurntToast PowerShell module (optional, for enhanced notifications)"]
+    },
+    {
+      "id": "clangd-lsp",
+      "name": "Clangd LSP",
+      "description": "C/C++ language server using clangd",
+      "path": "plugins/clangd-lsp",
+      "platforms": ["win32", "linux", "darwin"],
+      "prerequisites": ["clangd (LLVM)"],
+      "attribution": "Based on Piebald-AI/claude-code-lsps"
+    },
+    {
+      "id": "gopls-lsp",
+      "name": "Go LSP",
+      "description": "Go language server using gopls",
+      "path": "plugins/gopls-lsp",
+      "platforms": ["win32", "linux", "darwin"],
+      "prerequisites": ["gopls (go install golang.org/x/tools/gopls@latest)"],
+      "attribution": "Based on Piebald-AI/claude-code-lsps"
+    },
+    {
+      "id": "omnisharp-lsp",
+      "name": "OmniSharp LSP",
+      "description": "C#/.NET language server using OmniSharp",
+      "path": "plugins/omnisharp-lsp",
+      "platforms": ["win32", "linux", "darwin"],
+      "prerequisites": [".NET SDK", "OmniSharp"],
+      "attribution": "Based on Piebald-AI/claude-code-lsps"
+    },
+    {
+      "id": "powershell-lsp",
+      "name": "PowerShell LSP",
+      "description": "PowerShell language server using PowerShell Editor Services",
+      "path": "plugins/powershell-lsp",
+      "platforms": ["win32", "linux", "darwin"],
+      "prerequisites": ["PowerShell 7+", "PowerShellEditorServices module"],
+      "attribution": "Based on Piebald-AI/claude-code-lsps"
+    },
+    {
+      "id": "pyright-lsp",
+      "name": "Pyright LSP",
+      "description": "Python language server using Pyright",
+      "path": "plugins/pyright-lsp",
+      "platforms": ["win32", "linux", "darwin"],
+      "prerequisites": ["Node.js", "pyright (npm install -g pyright)"],
+      "attribution": "Based on Piebald-AI/claude-code-lsps"
+    },
+    {
+      "id": "vscode-langservers-lsp",
+      "name": "VS Code Language Servers",
+      "description": "HTML, CSS, JSON, and Markdown language servers from VS Code",
+      "path": "plugins/vscode-langservers-lsp",
+      "platforms": ["win32", "linux", "darwin"],
+      "prerequisites": ["Node.js", "vscode-langservers-extracted (npm install -g vscode-langservers-extracted)"],
+      "attribution": "Based on Piebald-AI/claude-code-lsps"
+    },
+    {
+      "id": "vtsls-lsp",
+      "name": "TypeScript LSP",
+      "description": "TypeScript/JavaScript language server using vtsls",
+      "path": "plugins/vtsls-lsp",
+      "platforms": ["win32", "linux", "darwin"],
+      "prerequisites": ["Node.js", "vtsls (npm install -g @vtsls/language-server)"],
+      "attribution": "Based on Piebald-AI/claude-code-lsps"
+    }
+  ],
+  "skills": [
+    {
+      "id": "lsp-usage",
+      "name": "LSP Usage Guide",
+      "description": "Guidance on when and how to use LSP operations vs text search",
+      "path": "skills/lsp-usage/SKILL.md"
+    },
+    {
+      "id": "nuget-version-check",
+      "name": "NuGet Version Check",
+      "description": "Methods for checking latest NuGet package versions",
+      "path": "skills/nuget-version-check/SKILL.md"
+    }
+  ]
+}

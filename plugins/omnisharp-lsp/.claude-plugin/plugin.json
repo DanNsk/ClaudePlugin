@@ -1,0 +1,12 @@
+{
+  "name": "OmniSharp LSP",
+  "version": "1.0.0",
+  "description": "C#/.NET language server using OmniSharp",
+  "attribution": "Based on Piebald-AI/claude-code-lsps",
+  "lsp": {
+    "languages": ["csharp"],
+    "filePatterns": ["*.cs", "*.csx"],
+    "command": "OmniSharp",
+    "args": ["-lsp"]
+  }
+}

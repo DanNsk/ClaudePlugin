@@ -1,0 +1,12 @@
+{
+  "name": "Clangd LSP",
+  "version": "1.0.0",
+  "description": "C/C++ language server using clangd",
+  "attribution": "Based on Piebald-AI/claude-code-lsps",
+  "lsp": {
+    "languages": ["c", "cpp", "objective-c", "objective-cpp"],
+    "filePatterns": ["*.c", "*.h", "*.cpp", "*.hpp", "*.cc", "*.cxx", "*.hh", "*.hxx", "*.m", "*.mm"],
+    "command": "clangd",
+    "args": ["--background-index"]
+  }
+}

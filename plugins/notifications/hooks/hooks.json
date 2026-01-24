@@ -1,0 +1,34 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Title \"Claude Code\" -Message \"Permission Required\" -Type \"Warning\""
+          }
+        ]
+      },
+      {
+        "matcher": "elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Title \"Claude Code\" -Message \"Input Required\" -Type \"Info\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \"${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1\" -Title \"Claude Code\" -Message \"Task Complete\" -Type \"Success\""
+          }
+        ]
+      }
+    ]
+  }
+}

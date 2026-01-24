@@ -1,0 +1,12 @@
+{
+  "name": "Go LSP",
+  "version": "1.0.0",
+  "description": "Go language server using gopls",
+  "attribution": "Based on Piebald-AI/claude-code-lsps",
+  "lsp": {
+    "languages": ["go", "gomod", "gowork"],
+    "filePatterns": ["*.go", "go.mod", "go.work"],
+    "command": "gopls",
+    "args": ["serve"]
+  }
+}

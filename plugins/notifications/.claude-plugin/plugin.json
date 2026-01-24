@@ -1,0 +1,7 @@
+{
+  "name": "Windows Notifications",
+  "version": "1.0.0",
+  "description": "Toast notifications for Claude Code events on Windows",
+  "platforms": ["win32"],
+  "hooks": "hooks/hooks.json"
+}

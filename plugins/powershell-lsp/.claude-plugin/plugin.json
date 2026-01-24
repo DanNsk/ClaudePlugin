@@ -1,0 +1,17 @@
+{
+  "name": "PowerShell LSP",
+  "version": "1.0.0",
+  "description": "PowerShell language server using PowerShell Editor Services",
+  "attribution": "Based on Piebald-AI/claude-code-lsps",
+  "lsp": {
+    "languages": ["powershell"],
+    "filePatterns": ["*.ps1", "*.psm1", "*.psd1"],
+    "command": "pwsh",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-Command",
+      "Import-Module PowerShellEditorServices; Start-EditorServices -HostName 'Claude Code' -HostProfileId 'claude' -HostVersion '1.0.0' -LogPath '/dev/null' -SessionDetailsPath '/dev/null' -FeatureFlags @() -AdditionalModules @() -BundledModulesPath (Split-Path -Parent (Get-Module PowerShellEditorServices -ListAvailable | Select-Object -First 1).Path) -EnableConsoleRepl -Stdio"
+    ]
+  }
+}
