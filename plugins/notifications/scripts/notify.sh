@@ -15,6 +15,11 @@ ALT_TITLE="${2:-Claude Code}"
 # Read JSON from stdin
 JSON_INPUT=$(cat 2>/dev/null || echo "")
 
+# Dump stdio to file if DUMP_STDIO_FILE is set
+if [ -n "$DUMP_STDIO_FILE" ]; then
+    echo "$JSON_INPUT" >> "$DUMP_STDIO_FILE" 2>/dev/null || true
+fi
+
 # Parse notification data using jq (if available) or grep fallback
 NOTIFICATION_TYPE=""
 MESSAGE=""
