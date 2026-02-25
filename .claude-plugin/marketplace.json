@@ -1,0 +1,133 @@
+{
+  "name": "dabystrukhin-plugins",
+  "owner": {
+    "name": "Daniil Bystrukhin"
+  },
+  "plugins": [
+    {
+      "name": "notifications",
+      "version": "2.1.1",
+      "source": "./plugins/notifications",
+      "description": "Pushover notifications for Claude events when workstation is locked",
+      "category": "productivity"
+    },
+    {
+      "name": "clangd-ex-lsp",
+      "version": "0.1.1",
+      "source": "./plugins/clangd-ex-lsp",
+      "description": "LLVM-based language server for C and C++",
+      "category": "development",
+      "tags": ["c", "cpp", "c++", "lsp", "language-server", "llvm", "clang"],
+      "author": {
+        "name": "Piebald LLC",
+        "email": "support@piebald.ai"
+      }
+    },
+    {
+      "name": "gopls-ex-lsp",
+      "version": "0.1.1",
+      "source": "./plugins/gopls-ex-lsp",
+      "description": "Official Go language server",
+      "category": "development",
+      "tags": ["go", "golang", "lsp", "language-server"],
+      "author": {
+        "name": "Piebald LLC",
+        "email": "support@piebald.ai"
+      }
+    },
+    {
+      "name": "omnisharp-lsp",
+      "version": "0.1.1",
+      "source": "./plugins/omnisharp-lsp",
+      "description": "Official .NET language server with rich C# support",
+      "category": "development",
+      "tags": ["csharp", "c#", "dotnet", "lsp", "language-server"],
+      "author": {
+        "name": "Piebald LLC",
+        "email": "support@piebald.ai"
+      }
+    },
+    {
+      "name": "powershell-lsp",
+      "version": "0.1.0",
+      "source": "./plugins/powershell-lsp",
+      "description": "Official PowerShell language server by Microsoft",
+      "category": "development",
+      "tags": ["powershell", "ps1", "lsp", "language-server", "microsoft", "scripting"],
+      "author": {
+        "name": "Piebald LLC",
+        "email": "support@piebald.ai"
+      }
+    },
+    {
+      "name": "pyright-ex-lsp",
+      "version": "0.1.1",
+      "source": "./plugins/pyright-ex-lsp",
+      "description": "Python language server with excellent type checking (Windows cmd /c wrapper)",
+      "category": "development",
+      "tags": ["python", "lsp", "language-server", "type-checking"],
+      "author": {
+        "name": "Piebald LLC",
+        "email": "support@piebald.ai"
+      }
+    },
+    {
+      "name": "vscode-langservers-ex-lsp",
+      "version": "0.1.2",
+      "source": "./plugins/vscode-langservers-ex-lsp",
+      "description": "HTML and CSS language servers from VS Code",
+      "category": "development",
+      "tags": ["html", "css", "lsp", "language-server", "vscode"],
+      "author": {
+        "name": "Piebald LLC",
+        "email": "support@piebald.ai"
+      }
+    },
+    {
+      "name": "vtsls-lsp",
+      "version": "0.1.0",
+      "source": "./plugins/vtsls-lsp",
+      "description": "TypeScript and JavaScript language server integration (using vtsls)",
+      "category": "development",
+      "tags": ["typescript", "javascript", "lsp", "language-server", "vtsls"],
+      "author": {
+        "name": "Piebald LLC",
+        "email": "support@piebald.ai"
+      }
+    },
+    {
+      "name": "utility-skills",
+      "version": "1.6.1",
+      "source": "./plugins/utility-skills",
+      "description": "Collection of utility skills for LSP usage guidance and NuGet version checking"
+    },
+    {
+      "name": "plan-reviewer",
+      "version": "1.8.3",
+      "source": "./plugins/plan-reviewer",
+      "description": "Visual plan annotation tool review, comment, and approve Claude Code plans in the browser",
+      "category": "productivity",
+      "tags": ["planning", "review", "annotation"]
+    },
+    {
+      "name": "windows-user-identity",
+      "version": "1.0.8",
+      "source": "./plugins/windows-user-identity",
+      "description": "Injects the Windows user's full display name into Claude Code session context on startup"
+    },
+    {
+      "name": "task-enforcer",
+      "version": "1.6.0",
+      "source": "./plugins/task-enforcer",
+      "description": "Injects task management discipline on session start, reminds on each prompt. Skips one-shot tasks automatically."
+    },
+    {
+      "name": "structured-dev",
+      "version": "1.1.0",
+      "source": "./plugins/structured-dev",
+      "description": "Multi-agent structured development workflow: requirements, research, ACID planning, implementation, validation",
+      "category": "productivity",
+      "tags": ["workflow", "planning", "agents", "requirements", "validation"]
+    }
+  ]
+}

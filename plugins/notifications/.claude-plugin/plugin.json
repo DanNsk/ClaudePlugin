@@ -1,0 +1,8 @@
+{
+  "name": "notifications",
+  "version": "2.1.1",
+  "description": "Pushover notifications for Claude Code events when workstation is locked",
+  "author": {
+    "name": "Daniil Bystrukhin"
+  }
+}

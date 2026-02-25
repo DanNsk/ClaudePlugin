@@ -1,0 +1,8 @@
+{
+  "name": "utility-skills",
+  "version": "1.6.1",
+  "description": "Utility skills: LSP navigation guidance, NuGet version checking, and codebase documentation generation (architecture diagrams, component docs, dependency maps)",
+  "author": {
+    "name": "Daniil Bystrukhin"
+  }
+}

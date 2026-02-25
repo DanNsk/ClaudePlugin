@@ -1,0 +1,12 @@
+{
+  "name": "vtsls-lsp",
+  "version": "0.1.0",
+  "description": "TypeScript and JavaScript language server integration (using vtsls)",
+  "author": {
+    "name": "Piebald LLC",
+    "email": "support@piebald.ai"
+  },
+  "repository": "https://github.com/yioneko/vtsls",
+  "license": "MIT",
+  "keywords": ["typescript", "javascript", "lsp", "language-server", "vtsls"]
+}

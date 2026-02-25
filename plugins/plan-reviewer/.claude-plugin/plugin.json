@@ -1,0 +1,9 @@
+{
+  "name": "plan-reviewer",
+  "version": "1.8.3",
+  "description": "Visual plan review with browser-based annotation for Claude Code",
+  "author": { 
+    "name": "Daniil Bystrukhin" 
+  },
+  "keywords": ["planning", "review", "annotation", "hooks"]
+}

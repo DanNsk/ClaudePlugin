@@ -1,0 +1,12 @@
+{
+  "name": "powershell-lsp",
+  "version": "0.1.0",
+  "description": "Official PowerShell language server by Microsoft",
+  "author": {
+    "name": "Piebald LLC",
+    "email": "support@piebald.ai"
+  },
+  "repository": "https://github.com/PowerShell/PowerShellEditorServices",
+  "license": "MIT",
+  "keywords": ["powershell", "ps1", "lsp", "language-server", "microsoft", "scripting"]
+}

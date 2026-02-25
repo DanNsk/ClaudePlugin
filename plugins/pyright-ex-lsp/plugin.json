@@ -1,0 +1,12 @@
+{
+  "name": "pyright-ex-lsp",
+  "version": "0.1.1",
+  "description": "Python language server with excellent type checking (Windows cmd /c wrapper)",
+  "author": {
+    "name": "Piebald LLC",
+    "email": "support@piebald.ai"
+  },
+  "repository": "https://github.com/microsoft/pyright",
+  "license": "MIT",
+  "keywords": ["python", "lsp", "language-server", "type-checking"]
+}

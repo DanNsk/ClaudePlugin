@@ -1,0 +1,12 @@
+{
+  "name": "clangd-ex-lsp",
+  "version": "0.1.1",
+  "description": "LLVM-based language server for C and C++",
+  "author": {
+    "name": "Piebald LLC",
+    "email": "support@piebald.ai"
+  },
+  "repository": "https://github.com/clangd/clangd",
+  "license": "Apache-2.0",
+  "keywords": ["c", "cpp", "c++", "lsp", "language-server", "llvm", "clang"]
+}

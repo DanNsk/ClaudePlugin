@@ -1,0 +1,8 @@
+{
+  "name": "structured-dev",
+  "version": "1.1.0",
+  "description": "Multi-agent structured development workflow: requirements, research, ACID planning, implementation, validation",
+  "author": {
+    "name": "Daniil Bystrukhin"
+  }
+}
