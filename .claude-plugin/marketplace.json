@@ -97,7 +97,7 @@
     },
     {
       "name": "utility-skills",
-      "version": "1.6.1",
+      "version": "1.6.2",
       "source": "./plugins/utility-skills",
       "description": "Collection of utility skills for LSP usage guidance and NuGet version checking"
     },
