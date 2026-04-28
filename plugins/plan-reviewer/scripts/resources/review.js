@@ -1043,9 +1043,12 @@
     };
     xhr.onerror = function () {
       if (decisionMade) return;
-      decisionMade = true;
-      clearInterval(pollTimer);
-      showOverlay(approveIcon, "Plan Approved from Console", "You can close this tab.");
+      pollFailures++;
+      if (pollFailures >= 3) {
+        decisionMade = true;
+        clearInterval(pollTimer);
+        showOverlay(approveIcon, "Plan Approved from Console", "You can close this tab.");
+      }
     };
     xhr.ontimeout = function () { /* ignore, retry next tick */ };
     xhr.send();

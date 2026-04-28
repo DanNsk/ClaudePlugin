@@ -162,7 +162,7 @@ def readPlanFromStdin():
         else:
             plan = json.dumps(data, indent=2)
 
-    return plan
+    return plan.replace("\r", "") if plan else plan
 
 
 def buildHookOutput():

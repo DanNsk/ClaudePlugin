@@ -1,6 +1,6 @@
 {
   "name": "plan-reviewer",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "Visual plan review with browser-based annotation for Claude Code",
   "author": { 
     "name": "Daniil Bystrukhin" 
