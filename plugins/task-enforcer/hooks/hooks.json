@@ -17,8 +17,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo \"[pre-stop] Before finishing, verify where applicable: build passes, tests added/updated, docs reflect changes. Skip items that do not apply.\"",
-            "timeout": 5
+            "command": "uv run \"${CLAUDE_PLUGIN_ROOT}/scripts/stop_check.py\"",
+            "timeout": 10
           }
         ]
       }

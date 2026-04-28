@@ -117,7 +117,7 @@
     },
     {
       "name": "task-enforcer",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "source": "./plugins/task-enforcer",
       "description": "Injects task management discipline on session start, reminds on each prompt. Skips one-shot tasks automatically."
     },

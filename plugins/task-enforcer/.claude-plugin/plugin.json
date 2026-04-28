@@ -1,6 +1,6 @@
 {
   "name": "task-enforcer",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Injects task management discipline on session start, reminds on each prompt. Skips one-shot tasks automatically.",
   "author": {
     "name": "Daniil Bystrukhin"
