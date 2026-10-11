@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan Review</title>
+<link rel="stylesheet" href="/resources/review.css">
+</head>
+<body>
+
+<div class="layout">
+  <header>
+    <span class="header-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+    </span>
+    <h1>Plan Review</h1>
+    <span class="badge" id="lineCount"></span>
+  </header>
+
+  <div class="columns">
+    <div class="content" id="content"></div>
+    <div class="annotations-col" id="annotationsCol"></div>
+  </div>
+</div>
+
+<!-- floating action menu for text selection -->
+<div class="action-menu" id="actionMenu" style="display:none">
+  <button class="action-btn action-comment" id="btnComment" title="Add comment">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </button>
+  <button class="action-btn action-delete" id="btnDelete" title="Mark for removal">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</div>
+
+<!-- bottom bar -->
+<div class="bottom-bar">
+  <span class="annotation-count" id="annotationCount">No annotations yet</span>
+  <div class="kbd-hint"><kbd>Esc</kbd> dismiss</div>
+  <button class="btn btn-changes" id="btnChanges" disabled onclick="window.reviewApp.submitChanges()">Request Changes</button>
+  <!-- TODO: re-enable when Claude approve-plan API changes -->
+  <!-- <button class="btn btn-approve" id="btnApprove" onclick="window.reviewApp.submitApprove()">Approve Plan</button> -->
+</div>
+
+<!-- done overlay -->
+<div class="overlay" id="overlay">
+  <div class="overlay-card">
+    <div class="overlay-icon" id="overlayIcon"></div>
+    <h2 id="overlayTitle"></h2>
+    <p id="overlayText"></p>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github-dark-dimmed.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  var PORT = __PORT__;
+  var rawPlan = __PLAN_JSON__;
+</script>
+<script src="/resources/review.js"></script>
+</body>
+</html>

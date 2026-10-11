@@ -1,0 +1,8 @@
+{
+  "name": "windows-user-identity",
+  "version": "1.0.8",
+  "description": "Injects the Windows user's full display name into Claude Code session context on startup",
+  "author": {
+    "name": "Daniil Bystrukhin"
+  }
+}

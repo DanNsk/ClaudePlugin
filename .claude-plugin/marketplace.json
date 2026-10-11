@@ -1,0 +1,46 @@
+{
+  "name": "dabystrukhin-plugins",
+  "owner": {
+    "name": "Daniil Bystrukhin"
+  },
+  "plugins": [
+    {
+      "name": "notifications",
+      "version": "2.1.1",
+      "source": "./plugins/notifications",
+      "description": "Pushover notifications for Claude events when workstation is locked",
+      "category": "productivity"
+    },
+    {
+      "name": "utility-skills",
+      "version": "2.0.0",
+      "source": "./plugins/utility-skills",
+      "description": "Utility skills: NuGet version checking, Basecoat UI design, and an end-of-session wrap-up checklist"
+    },
+    {
+      "name": "plan-reviewer",
+      "version": "1.8.4",
+      "source": "./plugins/plan-reviewer",
+      "description": "Visual plan annotation tool review, comment, and approve Claude Code plans in the browser",
+      "category": "productivity",
+      "tags": [
+        "planning",
+        "review",
+        "annotation"
+      ]
+    },
+    {
+      "name": "windows-user-identity",
+      "version": "1.0.8",
+      "source": "./plugins/windows-user-identity",
+      "description": "Injects the Windows user's full display name into Claude Code session context on startup"
+    },
+    {
+      "name": "task-enforcer",
+      "version": "2.0.0",
+      "source": "./plugins/task-enforcer",
+      "description": "Task discipline for multi-step work. Injects a tasking rule, or a beads rule in repos with .beads/, on the first prompt and a one-line reminder afterwards. In beads repos, blocks edits while no bead is in progress.",
+      "category": "productivity"
+    }
+  ]
+}
