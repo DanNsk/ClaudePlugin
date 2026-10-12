@@ -71,7 +71,7 @@ Collection of utility skills.
 **Skills:**
 - **NuGet Version Check** - Methods for checking latest NuGet package versions
 - **UI Designer** - Build UIs with Basecoat (Tailwind-based component classes for plain HTML)
-- **Wrap-up** - End-of-session checklist for shipping, memory, and self-improvement
+- **Wrap-up** - End-of-session checklist: gated commits, task and bead cleanup, knowledge worth keeping
 
 ### Plan Reviewer
 
