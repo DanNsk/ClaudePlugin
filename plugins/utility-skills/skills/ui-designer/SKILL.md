@@ -1,103 +1,97 @@
 ---
 name: ui-designer
-description: Build UIs with Basecoat - Tailwind-based component classes for plain HTML. Use for forms, buttons, cards, tables, modals, dashboards, landing pages, email templates. Works with any backend (Flask, Django, Rails, Laravel, PHP, static HTML). Skip this skill if user explicitly requests React/Vue/Angular.
-allowed-tools: Read, Glob, Grep, Write, Edit, WebFetch, WebSearch, Task
+description: Build UIs with Basecoat 1.x - shadcn/ui-style components as plain HTML with root classes and data attributes. Use for forms, buttons, cards, tables, dialogs, dashboards, and landing pages in server-rendered templates (Jinja2, Razor, Blade, ERB, PHP) or static HTML. Skip when the user asks for React, Vue, Angular, or Svelte, when the project already uses another component library, and for HTML email.
+allowed-tools: Read, Glob, Grep, Write, Edit, WebFetch, Bash
 ---
 
-# UI Designer: Basecoat UI
+# UI Designer: Basecoat 1.x
 
-Component classes for plain HTML. No React, no build step, no JSX.
+Basecoat styles semantic HTML through one root class per component plus documented `data-*` and ARIA attributes. Variants and sizes are attributes, never extra classes: `class="btn" data-variant="outline"`, not `btn-outline`.
 
-## When to Use
+## Source of truth
 
-- HTML/CSS interfaces, forms, dashboards
-- Server-rendered templates (Jinja2, Razor, Blade, ERB, PHP)
-- Static sites, prototypes, email templates
-- Any UI where React/Vue/Angular is overkill
+The full docs for every component live in one file: https://basecoatui.com/llms-full.txt. Before writing markup for a component not covered below, pull its section instead of guessing:
 
-## When NOT to Use
-
-- User explicitly asks for React, Vue, Angular, or Svelte
-- Project already uses shadcn/ui or similar
-- User wants a specific component library
-
-## Quick Start
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <link href="https://cdn.jsdelivr.net/npm/basecoat-css/dist/basecoat.css" rel="stylesheet">
-</head>
-<body class="p-8">
-  <div class="card max-w-md">
-    <div class="card-header">
-      <h2 class="card-title">Login</h2>
-    </div>
-    <form class="card-content form">
-      <fieldset>
-        <label for="email">Email</label>
-        <input type="email" id="email" class="input" required>
-      </fieldset>
-      <fieldset>
-        <label for="password">Password</label>
-        <input type="password" id="password" class="input" required>
-      </fieldset>
-      <button type="submit" class="btn btn-primary w-full">Sign In</button>
-    </form>
-  </div>
-</body>
-</html>
+```bash
+curl -s https://basecoatui.com/llms-full.txt | python -c "import sys,re; t=sys.stdin.read(); name=sys.argv[1]; m=re.search(r'(?ms)^# '+re.escape(name)+r'\n.*?(?=^# |\Z)', t); print(m.group(0) if m else 'not found')" "Dropdown Menu"
 ```
 
-## Core Classes
+Section names match the component list at https://basecoatui.com/llms.txt, for example `Tabs`, `Select`, `Combobox`, `Toast`, `Sidebar`.
 
-| Element | Class | Notes |
-|---------|-------|-------|
-| Button | `btn`, `btn-primary`, `btn-outline`, `btn-ghost`, `btn-destructive` | Use native `<button>` |
-| Input | `input` | Works with text, email, password, etc. |
-| Textarea | `textarea` | |
-| Select | `select` | Native `<select>` element |
-| Checkbox | `checkbox` | |
-| Radio | `radio` | |
-| Switch | `switch` | Toggle style checkbox |
-| Card | `card`, `card-header`, `card-content`, `card-footer`, `card-title` | |
-| Table | `table`, wrap in `table-container` | |
-| Badge | `badge`, `badge-primary`, `badge-destructive` | |
-| Alert | `alert`, `alert-success`, `alert-warning`, `alert-destructive` | |
-| Form | `form` | Auto-styles nested fieldsets/labels |
+## Setup
 
-See `@references/components.md` for full examples.
+**CDN** (static pages, prototypes):
 
-## Interactive Components
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@1.0.2/dist/basecoat.cdn.min.css">
+<script src="https://cdn.jsdelivr.net/npm/basecoat-css@1.0.2/dist/js/all.min.js" defer></script>
+<!-- layout utilities such as grid, gap-4, p-8, w-full; the Basecoat CDN file does not ship them -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+```
 
-These need vanilla JS: tabs, dialog, dropdown, select (custom), popover, sidebar, toast, command.
+Check the latest version on npm (`basecoat-css`) before pinning. Skip `all.min.js` when the page uses no JavaScript components.
 
-Key patterns:
-- **Dialog**: Use native `<dialog>` + `showModal()` / `close()`
-- **Tabs**: ARIA `aria-selected` + show/hide panels
-- **Dropdown**: Toggle visibility + close on outside click
+**npm** (projects with a Tailwind 4 build):
 
-See `@references/interactive-components.md` for copy-paste patterns.
+```css
+@import "tailwindcss";
+@import "basecoat-css";
+```
+
+Pre-1.0 class names (`btn-primary`, `card-header`, `badge-secondary`) only work with `basecoat-css/compat` loaded after Basecoat. Migrate old markup instead of relying on it.
+
+## Core components
+
+| Component | Markup | Attributes |
+|---|---|---|
+| Button | `<button type="button" class="btn">` (also on `<a>`) | `data-variant`: `secondary`, `outline`, `ghost`, `link`, `destructive`; omit for primary. `data-size`: `xs`, `sm`, `lg`, `icon`, `icon-xs`, `icon-sm`, `icon-lg`. Icon-only buttons need `aria-label` |
+| Card | `<div class="card">` with `<header>` (`<h2>`, `<p>`, optional `<div class="card-action">`), `<section>`, `<footer>` | `data-size="sm"` for dense cards |
+| Field | `<div role="group" class="field">` with `<label>`, control, `<p>` help text | `data-invalid` on the field plus `aria-invalid="true"` on the control; `data-orientation="horizontal"` for checkbox or switch rows |
+| Fieldset | `<fieldset class="fieldset">` with `<legend>` and fields | |
+| Input | `<input class="input">` | Automatic inside `.field`. Native `disabled`, `required` |
+| Textarea | `<textarea class="textarea">` | Automatic inside `.field` |
+| Native select | `<select class="select">` | Use the JS Select component only for custom option content or multi-select |
+| Checkbox | `<input type="checkbox" class="input">` | |
+| Switch | `<input type="checkbox" role="switch" class="input">` | `data-size="sm"` |
+| Radio | `<input type="radio" name="x" class="input">` | Wrap in `<fieldset>` or `role="radiogroup"` |
+| Label | `<label class="label" for="id">` | Not needed inside `.field` |
+| Badge | `<span class="badge">` | `data-variant`: `secondary`, `destructive`, `outline`, `ghost` |
+| Alert | `<div class="alert">` with optional `<svg>`, `<h2>`, `<section>`, `<footer>` | `data-variant="destructive"` |
+| Table | `<table class="table">`, wrapped in `<div class="table-container">` for horizontal scroll | Keep dropdowns, popovers, and tooltips out of `.table-container`: its overflow clips them |
+| Dialog | `<dialog class="dialog">` with inner `<div>` holding `<header>`, `<section>`, `<footer>` | Open with `showModal()`. Add `aria-labelledby` and `aria-describedby`. Close on backdrop click with `onclick="if (event.target === this) this.close()"` |
+
+## JavaScript components
+
+Accordion, Combobox, Command, Drawer, Dropdown Menu, Popover, Select, Sidebar, Slider, Tabs, and Toast need Basecoat's scripts. Use the bundled behavior and never hand-roll replacements. Pull the component's section from `llms-full.txt` for its exact markup.
+
+After inserting HTML dynamically, for example an HTMX swap, call `window.basecoat.initAll()`. After restoring cached DOM, call `window.basecoat.initAll({ force: true })`.
+
+## Example
+
+```html
+<div class="card max-w-md">
+  <header>
+    <h2>Sign in</h2>
+    <p>Use your work email.</p>
+  </header>
+  <section>
+    <form class="grid gap-4">
+      <div role="group" class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" required>
+      </div>
+      <div role="group" class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" required>
+      </div>
+      <button type="submit" class="btn w-full">Sign in</button>
+    </form>
+  </section>
+</div>
+```
 
 ## Principles
 
-1. **Native HTML first** - `<dialog>`, `<details>`, `<fieldset>`, `<select>`
-2. **Classes not components** - `class="btn"` not `<Button>`
-3. **CSS states over JS** - `:checked`, `:focus`, `:disabled`, `aria-invalid`
-4. **Vanilla JS when needed** - No framework, no state management
-
-## When Unsure
-
-If a component pattern isn't clear from the references, spawn a subagent to fetch the kitchen sink page and extract the exact markup:
-
-> Fetch https://basecoatui.com/kitchen-sink and find the [component] pattern. Return the HTML with classes.
-
-The kitchen sink is the source of truth - it has every component with real markup.
-
-## References
-
-- `@references/components.md` - CSS-only components
-- `@references/interactive-components.md` - JS-requiring components
-- https://basecoatui.com/kitchen-sink - All components (source of truth)
-- https://basecoatui.com/docs - Official docs
+- Native elements first: `<dialog>`, `<details>`, `<fieldset>`, `<select>`.
+- State through native attributes and ARIA: `disabled`, `checked`, `aria-invalid`, `aria-selected`.
+- Icons are not bundled. Use inline Lucide SVGs or the project's icon set.
