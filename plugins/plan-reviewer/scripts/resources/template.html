@@ -49,8 +49,13 @@
   <span class="annotation-count" id="annotationCount">No annotations yet</span>
   <div class="kbd-hint"><kbd>Esc</kbd> dismiss</div>
   <button class="btn btn-changes" id="btnChanges" disabled onclick="window.reviewApp.submitChanges()">Request Changes</button>
-  <!-- TODO: re-enable when Claude approve-plan API changes -->
-  <!-- <button class="btn btn-approve" id="btnApprove" onclick="window.reviewApp.submitApprove()">Approve Plan</button> -->
+  <select class="mode-select" id="approveMode" title="Permission mode after approval">
+    <option value="acceptEdits">Auto-accept edits</option>
+    <option value="default">Manually approve edits</option>
+    <option value="auto">Auto mode</option>
+    <option value="">Keep current mode</option>
+  </select>
+  <button class="btn btn-approve" id="btnApprove" onclick="window.reviewApp.submitApprove()">Approve Plan</button>
 </div>
 
 <!-- done overlay -->

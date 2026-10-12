@@ -17,6 +17,12 @@
   var btnDelete = document.getElementById("btnDelete");
   var annotCountEl = document.getElementById("annotationCount");
   var btnChanges = document.getElementById("btnChanges");
+  var approveModeEl = document.getElementById("approveMode");
+  var MODE_KEY = "planReviewer.approveMode";
+  try {
+    var savedMode = localStorage.getItem(MODE_KEY);
+    if (savedMode !== null) approveModeEl.value = savedMode;
+  } catch (err) { /* storage unavailable */ }
   var lineCountEl = document.getElementById("lineCount");
 
   // ---- helpers ----
@@ -951,6 +957,15 @@
     showOverlay(changesIcon, "Changes Requested", "Feedback sent to Claude Code. You can close this tab.");
   }
 
+  function submitApprove() {
+    decisionMade = true;
+    var mode = approveModeEl.value;
+    try { localStorage.setItem(MODE_KEY, mode); } catch (err) { /* storage unavailable */ }
+    sendDecision({ action: "approve", mode: mode });
+    var modeLabel = approveModeEl.options[approveModeEl.selectedIndex].text;
+    showOverlay(approveIcon, "Plan Approved", modeLabel + ". You can close this tab.");
+  }
+
   // ---- action menu buttons ----
   btnComment.addEventListener("click", function (e) {
     e.stopPropagation();
@@ -988,6 +1003,8 @@
       e.preventDefault();
       if (annotations.length > 0) {
         submitChanges();
+      } else {
+        submitApprove();
       }
     }
     if (e.key === "Escape") {
@@ -997,7 +1014,8 @@
 
   // ---- public API for inline handlers ----
   window.reviewApp = {
-    submitChanges: submitChanges
+    submitChanges: submitChanges,
+    submitApprove: submitApprove
   };
 
   // ---- init ----

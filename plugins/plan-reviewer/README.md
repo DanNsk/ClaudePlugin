@@ -7,7 +7,8 @@ A browser-based annotation tool for reviewing Claude Code plans. When Claude fin
 Claude Code calls `ExitPlanMode` when transitioning from plan mode to execution. Since that tool requires permission, the `PermissionRequest` hook fires. This plugin hooks into that moment, spins up a local HTTP server, and opens a line-by-line markdown viewer where you can select text and add annotations.
 
 Your decision flows back to Claude Code through stdout:
-- **Approve** sends `behavior: "allow"` and Claude proceeds with implementation.
+- **Approve** sends `behavior: "allow"` with the original `tool_input` as `updatedInput`, which ExitPlanMode requires, and Claude proceeds with implementation. The mode picker next to the button adds a `setMode` permission update for the session: auto-accept edits (`acceptEdits`), manually approve edits (`default`), auto mode (`auto`), or keep the current mode. The last choice is remembered in the browser.
+- Approve and clear context is not available from the browser. Hooks cannot clear context, so use the console dialog for that option.
 - **Request Changes** sends `behavior: "deny"` with line-referenced annotations as the reason, so Claude revises the plan.
 
 ## Install
@@ -26,7 +27,7 @@ Use Claude Code with plan mode. When the plan is ready and Claude calls `ExitPla
 4. Annotation bubbles appear in the right column with line/column references
 5. Click a bubble's text to edit it, or the X button to remove it
 6. Click "+" at the bottom of the plan to add a comment without selecting text
-7. Hit **Approve Plan** or **Request Changes**
+7. Pick the post-approval mode and hit **Approve Plan**, or hit **Request Changes**
 
 Keyboard shortcuts:
 - `Ctrl + Enter` - approve (or send changes if you have annotations)

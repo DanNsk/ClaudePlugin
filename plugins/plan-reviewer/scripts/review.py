@@ -20,6 +20,10 @@ from pathlib import Path
 decisionEvent = threading.Event()
 decisionResult = {}
 approvedExternally = False
+hookToolInput = {}
+
+# Permission modes the UI may request on approval; anything else approves without a mode change.
+APPROVE_MODES = {"acceptEdits", "default", "auto"}
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 RESOURCES_DIR = SCRIPT_DIR / "resources"
@@ -124,7 +128,9 @@ def readPlanFromStdin():
     """Parse the hook's stdin JSON and extract the plan text.
 
     Tries multiple paths, then falls back to globbing the plans directory.
+    Keeps tool_input in hookToolInput, since approving ExitPlanMode must echo it back.
     """
+    global hookToolInput
     try:
         raw = sys.stdin.buffer.read()
         data = json.loads(raw.decode("utf-8"))
@@ -135,6 +141,7 @@ def readPlanFromStdin():
     plan = None
     toolInput = data.get("tool_input", {})
     if isinstance(toolInput, dict):
+        hookToolInput = toolInput
         plan = toolInput.get("plan")
 
     # 2. data.plan
@@ -170,10 +177,17 @@ def buildHookOutput():
     action = decisionResult.get("action", "approve")
 
     if action == "approve":
+        # ExitPlanMode ignores a bare allow; it needs updatedInput carrying the plan.
+        decision = {"behavior": "allow", "updatedInput": hookToolInput}
+        mode = decisionResult.get("mode")
+        if mode in APPROVE_MODES:
+            decision["updatedPermissions"] = [
+                {"type": "setMode", "mode": mode, "destination": "session"}
+            ]
         return {
             "hookSpecificOutput": {
                 "hookEventName": "PermissionRequest",
-                "decision": {"behavior": "allow"},
+                "decision": decision,
             }
         }
 

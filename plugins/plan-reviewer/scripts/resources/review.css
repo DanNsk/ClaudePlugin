@@ -571,6 +571,17 @@ kbd {
 .btn-changes:hover { background: var(--btn-changes-hover); }
 .btn-changes:disabled { opacity: 0.35; cursor: not-allowed; }
 
+.mode-select {
+  padding: 7px 10px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--bg);
+  color: inherit;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
 /* ---- done overlay ---- */
 .overlay {
   display: none;

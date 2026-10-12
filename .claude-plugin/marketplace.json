@@ -19,7 +19,7 @@
     },
     {
       "name": "plan-reviewer",
-      "version": "1.8.4",
+      "version": "1.9.0",
       "source": "./plugins/plan-reviewer",
       "description": "Visual plan annotation tool review, comment, and approve Claude Code plans in the browser",
       "category": "productivity",

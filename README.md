@@ -81,6 +81,7 @@ Browser-based annotation tool for reviewing Claude Code plans. When Claude finis
 - Line-by-line markdown rendering with headings, code blocks, tables, mermaid diagrams
 - Text selection with comment and delete annotations
 - Annotation bubbles with line/column references
+- Approve from the browser with a post-approval permission mode (auto-accept edits, manual, auto, or unchanged)
 - Console approval detection (browser stays alive with overlay)
 
 **Environment variables:**
