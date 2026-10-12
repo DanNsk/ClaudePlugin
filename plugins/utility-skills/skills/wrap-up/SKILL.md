@@ -1,151 +1,47 @@
 ---
 name: wrap-up
-description: Use when user says "wrap up", "close session", "end session",
-  "wrap things up", "close out this task", or invokes /wrap-up — runs
-  end-of-session checklist for shipping, memory, and self-improvement
+description: Use when the user says "wrap up", "close session", "end session", "wrap things up", "close out this task", or invokes /wrap-up. Runs an end-of-session checklist covering uncommitted work, open tasks or beads, and knowledge worth keeping.
 ---
 
 # Session Wrap-Up
 
-Run four phases in order. Each phase is conversational and inline — no
-separate documents. All phases auto-apply without asking; present a
-consolidated report at the end.
+Run the three phases in order, then send one short report. The report lists only what changed and what the user must act on.
 
-## Phase 1: Ship It
+## Phase 1: Uncommitted work
 
-**Commit:**
-1. Run `git status` in each repo directory that was touched during the session
-2. If uncommitted changes exist, auto-commit to main with a descriptive message
-3. Push to remote
+For each repo touched during the session:
 
-**File placement check:**
-4. If any files were created or saved during this session:
-   - Verify they follow your naming convention
-   - Auto-fix naming violations (rename the file)
-   - Verify they're in the correct subfolder per your project structure
-   - Auto-move misplaced files to their correct location
-5. If any document-type files (.md, .docx, .pdf, .xlsx, .pptx) were created
-   at the workspace root or in code directories, move them to the docs folder
-   if they belong there
+1. Run `git status`.
+2. If changes are uncommitted, run the repo's build and tests first. Commit only when they pass. A failing gate is reported, never committed around.
+3. Commit on the current branch with a one-line message.
+4. Do not push, deploy, rename, or move files. Report unpushed commits instead, and let the user decide.
 
-**Deploy:**
-6. Check if the project has a deploy skill or script
-7. If one exists, run it
-8. If not, skip deployment entirely — do not ask about manual deployment
+## Phase 2: Open work items
 
-**Task cleanup:**
-9. Check the task list for in-progress or stale items
-10. Mark completed tasks as done, flag orphaned ones
+- **Beads repo** (a `.beads/` folder up to the git root): run `bd list --status=in_progress`. Close finished beads with `bd close <id>`. Report beads that are still open, with one line on what remains.
+- **Otherwise**: if the session has a task list, mark finished tasks completed and report anything pending or in progress.
 
-## Phase 2: Remember It
+## Phase 3: Knowledge worth keeping
 
-Review what was learned during the session. Decide where each piece of
-knowledge belongs in the memory hierarchy:
+Review the session for facts a future session would need and could not derive from the code or git history: a non-obvious project quirk, a corrected assumption, a convention the user stated.
 
-**Memory placement guide:**
-- **Auto memory** (Claude writes for itself) — Debugging insights, patterns
-  discovered during the session, project quirks. Tell Claude to save these:
-  "remember that..." or "save to memory that..."
-- **CLAUDE.md** (instructions for Claude) — Permanent project rules,
-  conventions, commands, architecture decisions that should guide all future
-  sessions
-- **`.claude/rules/`** (modular project rules) — Topic-specific instructions
-  that apply to certain file types or areas. Use `paths:` frontmatter to scope
-  rules to relevant files (e.g., testing rules scoped to `tests/**`)
-- **`CLAUDE.local.md`** (private per-project notes) — Personal WIP context,
-  local URLs, sandbox credentials, current focus areas that shouldn't be
-  committed
-- **`@import` references** — When a CLAUDE.md would benefit from referencing
-  another file rather than duplicating its content
+Place each one by scope:
 
-**Decision framework:**
-- Is it a permanent project convention? → CLAUDE.md or `.claude/rules/`
-- Is it scoped to specific file types? → `.claude/rules/` with `paths:`
-  frontmatter
-- Is it a pattern or insight Claude discovered? → Auto memory
-- Is it personal/ephemeral context? → `CLAUDE.local.md`
-- Is it duplicating content from another file? → Use `@import` instead
+- **Auto memory**: insights and quirks for this project. Write them directly.
+- **Project `CLAUDE.md` or `.claude/rules/`**: permanent project conventions. Use `.claude/rules/` with `paths:` frontmatter when the rule applies only to certain files.
+- **Global `AGENTS.md` or `CLAUDE.md`**: propose the exact edit in the report and wait for approval. These files may be synced from elsewhere, so a direct edit can drift or be overwritten.
 
-Note anything important in the appropriate location.
+Never write secrets, credentials, or client data into any of these files.
 
-## Phase 3: Review & Apply
+If nothing qualifies, skip the phase silently.
 
-Analyze the conversation for self-improvement findings. If the session was
-short or routine with nothing notable, say "Nothing to improve" and proceed
-to Phase 4.
+## Report
 
-**Auto-apply all actionable findings immediately** — do not ask for approval
-on each one. Apply the changes, commit them, then present a summary of what
-was done.
+One short list:
 
-**Finding categories:**
-- **Skill gap** — Things Claude struggled with, got wrong, or needed multiple
-  attempts
-- **Friction** — Repeated manual steps, things user had to ask for explicitly
-  that should have been automatic
-- **Knowledge** — Facts about projects, preferences, or setup that Claude
-  didn't know but should have
-- **Automation** — Repetitive patterns that could become skills, hooks, or
-  scripts
+- Commits made, with their one-line messages
+- Unpushed commits and uncommitted changes left behind, with the reason
+- Beads or tasks still open
+- Proposed edits to global instruction files
 
-**Action types:**
-- **AGENTS.md** — Edit the relevant project or global AGENTS.md
-- **Rules** — Create or update a `.claude/rules/` file
-- **Auto memory** — Save an insight for future sessions
-- **Skill / Hook** — Document a new skill or hook spec for implementation
-- **CLAUDE.local.md** — Create or update per-project local memory
-
-Present a summary after applying, in two sections — applied items first,
-then no-action items:
-
-Findings (applied):
-
-1. ✅ Skill gap: Cost estimates were wrong multiple times
-   → [CLAUDE.md] Added token counting reference table
-
-2. ✅ Knowledge: Worker crashes on 429/400 instead of retrying
-   → [Rules] Added error-handling rules for worker
-
-3. ✅ Automation: Checking service health after deploy is manual
-   → [Skill] Created post-deploy health check skill spec
-
----
-No action needed:
-
-4. Knowledge: Discovered X works this way
-   Already documented in CLAUDE.md
-
-## Phase 4: Publish It
-
-After all other phases are complete, review the full conversation for material
-that could be published. Look for:
-
-- Interesting technical solutions or debugging stories
-- Community-relevant announcements or updates
-- Educational content (how-tos, tips, lessons learned)
-- Project milestones or feature launches
-
-**If publishable material exists:**
-
-Draft the article(s) for the appropriate platform and save to a drafts folder.
-Present suggestions with the draft:
-
-All wrap-up steps complete. I also found potential content to publish:
-
-1. "Title of Post" — 1-2 sentence description of the content angle.
-   Platform: Reddit
-   Draft saved to: Drafts/Title-Of-Post/Reddit.md
-
-Wait for the user to respond. If they approve, post or prepare per platform.
-If they decline, the drafts remain for later.
-
-**If no publishable material exists:**
-
-Say "Nothing worth publishing from this session" and you're done.
-
-**Scheduling considerations:**
-- If the session produced multiple publishable items, do not post them all
-  at once
-- Space posts at least a few hours apart per platform
-- If multiple posts are needed, post the most time-sensitive one now and
-  present a schedule for the rest
+Omit any item that has nothing to report. If every phase came up empty, reply "Nothing to wrap up."
