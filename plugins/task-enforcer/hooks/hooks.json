@@ -2,33 +2,11 @@
   "hooks": {
     "SessionStart": [
       {
-        "matcher": "resume|clear|compact",
+        "matcher": "startup|resume|clear|compact",
         "hooks": [
           {
             "type": "command",
-            "command": "uv run \"${CLAUDE_PLUGIN_ROOT}/scripts/session_start.py\" --session",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uv run \"${CLAUDE_PLUGIN_ROOT}/scripts/stop_check.py\"",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uv run \"${CLAUDE_PLUGIN_ROOT}/scripts/session_start.py\" --prompt",
+            "command": "uv run \"${CLAUDE_PLUGIN_ROOT}/scripts/session_start.py\"",
             "timeout": 10
           }
         ]

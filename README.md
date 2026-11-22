@@ -93,7 +93,7 @@ Browser-based annotation tool for reviewing Claude Code plans. When Claude finis
 
 ### Task Enforcer
 
-Planning discipline for multi-step work, in one of two modes per repo. Repos with a `.beads/` folder get the beads rule and an edit block while no bead is in progress. Every other repo gets the tasking rule. The full rule is injected on the first prompt, then a one-line reminder on each prompt. See `plugins/task-enforcer/README.md`.
+Planning discipline for multi-step work, in one of two modes per repo. Repos with a `.beads/` folder get the beads rule and an edit block while no bead is in progress. Every other repo gets the tasking rule. The rule is injected at session start, resume, clear, and compact. Reminders during the session come from agent-wire's turn-end nudges when agent-wire is installed. See `plugins/task-enforcer/README.md`.
 
 **Prerequisites:**
 - [uv](https://docs.astral.sh/uv/) (Python package manager)
@@ -131,7 +131,7 @@ ClaudePlugin/
     +-- task-enforcer/
     |   +-- .claude-plugin/plugin.json
     |   +-- hooks/hooks.json
-    |   +-- scripts/ (session_start, pre_edit_check, stop_check, beads)
+    |   +-- scripts/ (session_start, pre_edit_check, beads)
     +-- windows-user-identity/
         +-- .claude-plugin/plugin.json
         +-- hooks/hooks.json

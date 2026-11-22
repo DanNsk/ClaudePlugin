@@ -15,8 +15,6 @@ This repo tracks work with beads (`bd`). Use beads instead of TaskCreate here; t
 - Edits are blocked while no bead is in progress
 - Close the bead with `bd close <id>` when the work is done"""
 
-BEADS_REMINDER = "Beads repo: claim a bead (`bd update <id> --status in_progress`) before editing, close it with `bd close <id>` when done."
-
 
 def list_in_progress_beads(root):
     """In-progress beads as dicts, None when bd cannot answer."""

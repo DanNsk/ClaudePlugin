@@ -1,7 +1,7 @@
 {
   "name": "task-enforcer",
-  "version": "2.0.0",
-  "description": "Task discipline for multi-step work. Injects a tasking rule, or a beads rule in repos with .beads/, on the first prompt and a one-line reminder afterwards. In beads repos, blocks edits while no bead is in progress.",
+  "version": "2.1.0",
+  "description": "Task discipline for multi-step work. Injects a tasking rule, or a beads rule in repos with .beads/, at session start. In beads repos, blocks edits while no bead is in progress.",
   "author": {
     "name": "Daniil Bystrukhin"
   }
